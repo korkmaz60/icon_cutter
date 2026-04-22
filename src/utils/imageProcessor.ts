@@ -5,7 +5,9 @@ export interface BoundingBox {
   maxY: number;
 }
 
-export async function processImage(file: File, format: 'image/png' | 'image/webp'): Promise<string[]> {
+export type Sensitivity = number;
+
+export async function processImage(file: File, format: 'image/png' | 'image/webp', sensitivity: Sensitivity = 50): Promise<string[]> {
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.onload = () => {
@@ -95,16 +97,19 @@ export async function processImage(file: File, format: 'image/png' | 'image/webp
               }
             }
             
-            // Filter tiny noise (e.g. smaller than 10 pixels)
-            if (area > 10) {
+            // Filter tiny noise based on sensitivity
+            // At sensitivity 1: minArea is ~30. At 100: minArea is 2.
+            const minArea = Math.max(2, 30 - ((sensitivity - 1) / 99) * 28);
+            if (area > minArea) {
               boxes.push({ minX, minY, maxX, maxY });
             }
           }
         }
       }
 
-      // Merge boxes that are close to each other (e.g. floating parts of the same icon)
-      const maxDistance = 20; // Allow 20px gap between parts of same icon
+      // Merge boxes that are close to each other
+      // At sensitivity 1: maxDistance is 40. At 100: maxDistance is 5.
+      const maxDistance = Math.max(5, 40 - ((sensitivity - 1) / 99) * 35);
       let merged = true;
       while (merged) {
         merged = false;

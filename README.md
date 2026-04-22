@@ -1,73 +1,52 @@
-# React + TypeScript + Vite
+# Slyce (Icon Cutter) - Premium AI Asset Extractor ✂️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Slyce, oyun geliştiricileri ve tasarımcılar için yapay zeka (Midjourney, DALL-E) ile üretilen Sprite Grid (toplu ikon) görsellerindeki objeleri tarayıcı üzerinde milisaniyeler içinde tek tek kesen ve arka planlarını şeffaflaştıran açık kaynaklı, lokal bir araçtır.
 
-Currently, two official plugins are available:
+![Slyce UI](https://github.com/user-attachments/assets/slyce-preview) <!-- Placeholder for actual screenshot -->
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Özellikler ✨
 
-## React Compiler
+*   **Piksel Tarama Motoru (BFS):** HTML5 Canvas tabanlı özel Breadth-First Search algoritmasıyla pikselleri tarar. "Solid Black" (Tam Siyah) veya Şeffaf arka plana sahip görsellerdeki parçaları kusursuzca ayırt eder.
+*   **Tamamen Lokal & Güvenli:** Görselleriniz hiçbir sunucuya yüklenmez; tüm kesme işlemi tarayıcınızın donanım gücüyle cihazınızda gerçekleşir.
+*   **Hassasiyet Ayarı:** 1-100 arasında değiştirilebilen "Tarama Hassasiyeti" çubuğu ile büyük objeleri bütün tutabilir veya çok ufak parçacıkları/büyü efektlerini ayrı ikonlar olarak söküp alabilirsiniz.
+*   **Yapay Zeka Prompt Yardımcısı:** İkonlarınızı tam 256x256px çözünürlükte kesebilmek için yapay zekaya vermeniz gereken sihirli ek komutları (Suffix) tek tıkla üretir ve kopyalar.
+*   **Premium Arayüz:** Nottut ve Zempra esintili, Tailwind kullanılmadan saf CSS ile yazılmış Glassmorphism ağırlıklı modern aydınlık/karanlık (Light/Dark) tema.
+*   **Hızlı Dışa Aktarım:** Tek tıklama ile tespit edilen tüm ikonları (PNG veya WebP olarak) numaralandırıp tek bir `.zip` dosyası halinde indirir.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Kurulum ve Çalıştırma 🚀
 
-## Expanding the ESLint configuration
+Proje **Vite + React + TypeScript** kullanılarak oluşturulmuştur.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. Projeyi bilgisayarınıza indirin:
+   ```bash
+   git clone https://github.com/korkmaz60/icon_cutter.git
+   cd icon_cutter
+   ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+2. Gerekli kütüphaneleri (JSZip, File-Saver, Lucide-React vb.) yükleyin:
+   ```bash
+   npm install
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+3. Geliştirme sunucusunu başlatın:
+   ```bash
+   npm run dev
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+4. Tarayıcınızda `http://localhost:5173` adresine giderek uygulamayı kullanmaya başlayabilirsiniz.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Kullanım Kılavuzu 📖
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. **Görsel Üretimi:** Midjourney veya DALL-E'ye gidin. Arayüzümüzdeki **"Yapay Zeka İçin Sihirli Ek"** aracından kopyaladığınız kodu kendi promptunuzun sonuna yapıştırarak siyah arka planlı ve ızgara görünümlü (4x4 veya 8x8) görselinizi üretin.
+2. **Yükleme:** Üretilen görseli Slyce'ın ekranına sürükleyip bırakın.
+3. **Ayarlar:** Gerekiyorsa sağ menüden "Tarama Hassasiyetini" ayarlayın. Formatınızı seçin (PNG/WebP).
+4. **İndirme:** Hepsini İndir butonuna basarak tüm ikonları zip formatında ayrı ayrı dosyalanmış şekilde bilgisayarınıza kaydedin.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Teknoloji Yığını (Tech Stack) 🛠️
+*   **Frontend:** React 18, Vite
+*   **Styling:** Pure CSS (CSS Variables, Glassmorphism)
+*   **İkonlar:** Lucide React
+*   **Dışa Aktarım:** JSZip, FileSaver.js
+
+---
+*Geliştirici:* Salih KORKMAZ
