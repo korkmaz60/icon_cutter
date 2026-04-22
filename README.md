@@ -1,9 +1,6 @@
-# <img src="./public/slyce_icon.png" width="36" style="vertical-align: middle; border-radius: 8px; margin-right: 8px;" /> Slyce (Icon Cutter) - Premium AI Asset Extractor ✂️
+# <img width="1024" height="1024" alt="ChatGPT Image 22 Nis 2026 17_30_47" src="https://github.com/user-attachments/assets/c210b8e0-7c38-4a90-937a-24e12ba100e3" /> Slyce (Icon Cutter) - Premium AI Asset Extractor ✂️
 
 Slyce, oyun geliştiricileri ve tasarımcılar için yapay zeka (Midjourney, DALL-E) ile üretilen Sprite Grid (toplu ikon) görsellerindeki objeleri tarayıcı üzerinde milisaniyeler içinde tek tek kesen ve arka planlarını şeffaflaştıran açık kaynaklı, lokal bir araçtır.
-
-![Slyce UI](<img width="1024" height="1024" alt="ChatGPT Image 22 Nis 2026 17_30_47" src="https://github.com/user-attachments/assets/c210b8e0-7c38-4a90-937a-24e12ba100e3" />
-) <!-- Placeholder for actual screenshot -->
 
 ## Özellikler ✨
 
