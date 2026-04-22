@@ -1,4 +1,4 @@
-# Slyce (Icon Cutter) - Premium AI Asset Extractor ✂️
+# <img src="./public/slyce_icon.png" width="36" style="vertical-align: middle; border-radius: 8px; margin-right: 8px;" /> Slyce (Icon Cutter) - Premium AI Asset Extractor ✂️
 
 Slyce, oyun geliştiricileri ve tasarımcılar için yapay zeka (Midjourney, DALL-E) ile üretilen Sprite Grid (toplu ikon) görsellerindeki objeleri tarayıcı üzerinde milisaniyeler içinde tek tek kesen ve arka planlarını şeffaflaştıran açık kaynaklı, lokal bir araçtır.
 

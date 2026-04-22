@@ -95,9 +95,7 @@ function App() {
     <div className="app-container">
       <header className="header">
         <div className="header-text" style={{display: 'flex', alignItems: 'center', gap: '1rem'}}>
-          <div style={{background: 'var(--accent-color)', padding: '0.8rem', borderRadius: '14px', color: '#fff', boxShadow: '0 8px 16px rgba(59, 130, 246, 0.3)'}}>
-            <ScissorsSquare size={32} />
-          </div>
+          <img src="/slyce_icon.png" alt="Slyce Logo" style={{width: '56px', height: '56px', borderRadius: '14px', boxShadow: '0 8px 16px rgba(59, 130, 246, 0.3)', objectFit: 'cover'}} />
           <div>
             <h1>Slyce</h1>
             <p>Smart Asset Extractor</p>
