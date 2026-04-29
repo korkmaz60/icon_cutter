@@ -1,12 +1,16 @@
 import { useState, useRef, DragEvent, useEffect, useCallback } from 'react';
-import { Upload, Download, Settings, Moon, Sun, Info, RotateCcw, Copy, CheckCircle2, X, Trash2, Check } from 'lucide-react';
+import { Upload, Download, Settings, Moon, Sun, Info, RotateCcw, Copy, CheckCircle2, X, Trash2, Check, Scissors, ImageMinus } from 'lucide-react';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import { processImage, type Sensitivity } from './utils/imageProcessor';
+import BackgroundRemover from './components/BackgroundRemover';
 import './index.css';
+
+type AppMode = 'extract' | 'bg-remove';
 
 type OutputFormat = 'image/png' | 'image/webp';
 type Theme = 'light' | 'dark';
+
 
 interface ToastData {
   message: string;
@@ -25,6 +29,7 @@ function App() {
   const [copied, setCopied] = useState(false);
   const [selectedIcons, setSelectedIcons] = useState<Set<number>>(new Set());
   const [toast, setToast] = useState<ToastData | null>(null);
+  const [mode, setMode] = useState<AppMode>('extract');
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const cachedFileRef = useRef<File | null>(null);
@@ -218,13 +223,27 @@ function App() {
           </div>
         </div>
 
-        <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
-          {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-        </button>
+        <div style={{display: 'flex', alignItems: 'center', gap: '0.75rem'}}>
+          <div className="mode-tabs">
+            <button className={`mode-tab ${mode === 'extract' ? 'active' : ''}`} onClick={() => setMode('extract')}>
+              <Scissors size={16} /> İkon Çıkar
+            </button>
+            <button className={`mode-tab ${mode === 'bg-remove' ? 'active' : ''}`} onClick={() => setMode('bg-remove')}>
+              <ImageMinus size={16} /> Arkaplan Temizle
+            </button>
+          </div>
+          <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
+            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
+        </div>
       </header>
 
       <div className="main-layout">
         <div className="content-left">
+          {mode === 'bg-remove' ? (
+            <BackgroundRemover showToast={showToast} />
+          ) : (
+          <>
           {icons.length === 0 && !isProcessing && (
             <>
               <div
@@ -363,8 +382,12 @@ function App() {
               </div>
             </div>
           )}
+          </>
+          )}
         </div>
 
+
+        {mode === 'extract' && (
         <div className="settings-panel">
           <div className="glass-panel" style={{padding: '1.5rem'}}>
             <div style={{display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem'}}>
@@ -464,6 +487,7 @@ function App() {
             </button>
           </div>
         </div>
+        )}
       </div>
     </div>
   );
